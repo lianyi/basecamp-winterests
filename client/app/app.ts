@@ -5,7 +5,7 @@ const ngCookies = require('angular-cookies');
 const ngResource = require('angular-resource');
 const ngSanitize = require('angular-sanitize');
 import 'angular-socket-io';
-
+import 'angular-masonry'
 const uiRouter = require('angular-ui-router');
 const uiBootstrap = require('angular-ui-bootstrap');
 // const ngMessages = require('angular-messages');
@@ -22,7 +22,7 @@ import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
-
+import mywins from './mywins/mywins.component';
 
 import './app.less';
 
@@ -32,9 +32,10 @@ angular.module('winterestsApp', [
   ngSanitize,
 
   'btford.socket-io',
-
+  'wu.masonry',
   uiRouter,
   uiBootstrap,
+
 
   _Auth,
   account,
@@ -43,15 +44,16 @@ angular.module('winterestsApp', [
   main,
   constants,
   socket,
+  mywins,
   util
 ])
   .config(routeConfig)
-  .run(function($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, Auth) {
     'ngInject';
     // Redirect to login if route requires auth and you're not logged in
-    $rootScope.$on('$stateChangeStart', function(event, next) {
-      Auth.isLoggedIn(function(loggedIn) {
-        if(next.authenticate && !loggedIn) {
+    $rootScope.$on('$stateChangeStart', function (event, next) {
+      Auth.isLoggedIn(function (loggedIn) {
+        if (next.authenticate && !loggedIn) {
           $location.path('/login');
         }
       });
