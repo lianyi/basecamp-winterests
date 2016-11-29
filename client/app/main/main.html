@@ -7,11 +7,13 @@
         <div masonry>
           <div class="masonry-brick" ng-repeat="bar in $ctrl.data">
             <div style="background-color: #ccd4df; padding: 10px; border: 2px solid steelblue; border-radius: 8px;">
-              <img style="border-radius: 8px;" ng-src="{{ bar.image_url }}" alt="A masonry brick">
+              <img style="border-radius: 8px;" ng-src="{{ bar.image_url }}" err-src="assets/images/noimage.jpg" alt="A masonry brick">
               <BR>
               <button class="btn btn-xs pull-right"
-                      ng-class="{'btn-primary': $ctrl.amIGoing(bar),'btn-default': ! $ctrl.amIGoing(bar)}"
-                      ng-click="$ctrl.changeGoing(bar)">
+                      ng-class="{'btn-primary': $ctrl.amIVoted(bar),
+                      'btn-default': !$ctrl.amIVoted(bar),
+                      'disabled':!$ctrl.getCurrentUserSync()._id}"
+                      ng-click="$ctrl.changeVote(bar)">
               <span
                 class="glyphicon glyphicon-heart-empty"></span> {{bar.visitorsCount}}
               </button>

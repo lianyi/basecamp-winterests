@@ -2,18 +2,49 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <h3 class="text-left">My Wins</h3>
+        <h3 class="text-left">My Wins
+          <button class="btn btn-md btn-info" ng-show="!onAdd" ng-click="onAdd = true;">
+            <span   class="glyphicon glyphicon-plus"></span>
+          </button>
+        </h3>
+      </div>
+
+      <div class="col-lg-4" ng-show="onAdd">
+        <div class="input-group">
+          <span class="input-group-addon" >Title </span>
+          <input type="text" class="form-control"
+                 ng-model=$ctrl.newThing.title >
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon3">Image URL</span>
+          <input type="text" ng-model=$ctrl.newThing.image_url
+                 class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+      </div>
+
+      <div class="col-lg-2" ng-show="onAdd && $ctrl.newThing.image_url">
+        <img style="border-radius: 8px;width:100px;height:100px;" err-src="assets/images/noimage.jpg" ng-src="{{ $ctrl.newThing.image_url }}" >
+        <button class="btn btn-md btn-info"  ng-click="onAdd=false;$ctrl.Add();">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </div>
+
+    <div class="col-lg-12">
+
         <HR>
         <div masonry>
           <div class="masonry-brick" ng-repeat="bar in $ctrl.data">
             <div style="background-color: #ccd4df; padding: 10px; border: 2px solid steelblue; border-radius: 8px;">
-              <img style="border-radius: 8px;" ng-src="{{ bar.image_url }}" alt="A masonry brick">
+              <img style="border-radius: 8px;" ng-src="{{ bar.image_url }}" err-src="assets/images/noimage.jpg" alt="A masonry brick">
               <BR>
-              <button class="btn btn-xs pull-right"
-                      ng-class="{'btn-primary': $ctrl.amIGoing(bar),'btn-default': ! $ctrl.amIGoing(bar)}"
-                      ng-click="$ctrl.changeGoing(bar)">
+              <button class="btn btn-xs pull-left btn-warning disabled">
               <span
                 class="glyphicon glyphicon-heart-empty"></span> {{bar.visitorsCount}}
+              </button>
+              <button class="btn btn-xs pull-right btn-danger"
+                      ng-click="$ctrl.Delete(bar)"><span
+                class="glyphicon glyphicon-trash"></span>
+
               </button>
             </div>
           </div>

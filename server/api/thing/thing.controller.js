@@ -115,3 +115,39 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+
+
+export function upsertVisitor(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+  Bar.findOne({yelpId: req.params.id}).exec().then(
+    function (bar) {
+      if (!bar) {//make a new one
+        return Bar.create({
+          yelpId: req.params.id,
+          visitors: [req.params.user_id],
+          visitorsCount: 1
+        }).then(respondWithResult(res, 201)).catch(handleError(res));
+      } else {//update existing one
+
+        const idx = _.indexOf(bar.visitors, req.params.user_id);
+        if (idx >= 0) {
+          bar.visitors.splice(idx, 1);
+        } else {
+          bar.visitors.push(req.params.user_id);
+        }
+        bar.visitorsCount = bar.visitors.length;
+        console.info(bar);
+        return Bar.findOneAndUpdate({_id: bar._id}, bar, {
+          upsert: true,
+          setDefaultsOnInsert: true,
+          runValidators: true
+        }).exec()
+          .then(respondWithResult(res))
+          .catch(handleError(res));
+      }
+    }).catch(handleError(res));
+
+}

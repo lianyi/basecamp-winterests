@@ -23,6 +23,8 @@ import constants from './app.constants';
 import util from '../components/util/util.module';
 import socket from '../components/socket/socket.service';
 import mywins from './mywins/mywins.component';
+import errSrc from './errSrc/errSrc.directive';
+
 
 import './app.less';
 
@@ -45,6 +47,7 @@ angular.module('winterestsApp', [
   constants,
   socket,
   mywins,
+  errSrc,
   util
 ])
   .config(routeConfig)
