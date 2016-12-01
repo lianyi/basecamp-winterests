@@ -33,7 +33,12 @@ export class MywinsComponent {
       this.data = response.data;
       this.socket.syncUpdates('thing', this.data);
     });
+    const userid = this.getCurrentUserSync()._id;
+    if (!userid) {
+      this.$state.go('login');
+    }
   }
+
   Add() {
     if (this.newThing) {
       this.$http.post('/api/things', this.newThing);

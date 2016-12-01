@@ -4,13 +4,12 @@ const angular = require('angular');
 const ngCookies = require('angular-cookies');
 const ngResource = require('angular-resource');
 const ngSanitize = require('angular-sanitize');
-import 'angular-socket-io';
-import 'angular-masonry'
 const uiRouter = require('angular-ui-router');
 const uiBootstrap = require('angular-ui-bootstrap');
 // const ngMessages = require('angular-messages');
 // import ngValidationMatch from 'angular-validation-match';
-
+import 'angular-socket-io';
+import 'angular-masonry'
 
 import {routeConfig} from './app.config';
 
