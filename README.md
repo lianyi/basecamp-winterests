@@ -30,4 +30,4 @@ Running `npm test` will run the unit tests with karma.
 ##deploy 
 
     git subtree split --prefix dist master
-    git push heroku 5867408ca2b25ec0cab36bd6a5c42427b58212c4:master  --force
+    git push heroku 6b98c8d2f90b10cd091371ca2f980d3af9999313:master  --force
