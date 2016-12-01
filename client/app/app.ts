@@ -9,7 +9,9 @@ const uiBootstrap = require('angular-ui-bootstrap');
 // const ngMessages = require('angular-messages');
 // import ngValidationMatch from 'angular-validation-match';
 import 'angular-socket-io';
-import 'angular-masonry'
+import 'imagesloaded';
+import 'angular-masonry';
+
 
 import {routeConfig} from './app.config';
 
