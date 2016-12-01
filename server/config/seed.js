@@ -25,6 +25,11 @@ Thing.find({}).remove()
       image_url:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/African_Leopard_5.JPG/220px-African_Leopard_5.JPG',
       visitors: ['aa', 'cc'],
       visitorsCount: 2
+    },{
+      title:'snow leopard',
+      image_url:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Lightmatter_snowleopard.jpg/220px-Lightmatter_snowleopard.jpg',
+      visitors: ['aa'],
+      visitorsCount: 1
     });
   });
 
